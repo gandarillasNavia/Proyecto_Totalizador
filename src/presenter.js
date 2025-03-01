@@ -1,5 +1,6 @@
 import { calcularPrecioNeto, calcularImpuesto } from "./totalizador.js";
 import { obtenerImpuestoEstado, calcularPrecioTotal } from "./totalizador.js";
+import { calcularDescuentoSegunPrecio } from "./totalizador.js";
 
 const form = document.getElementById("parametros");
 const inputCant = document.getElementById("cantidad-in");
@@ -11,6 +12,8 @@ const spanCodigoEstado = document.getElementById("estado");
 const spanPorcentajeImpuesto = document.getElementById("porcentaje-impuesto");
 const spanTotalImpuesto = document.getElementById("total-impuesto");
 const spanPrecioTotal = document.getElementById("precio-total");
+const spanPorcentajeDescuentoPrecio = document.getElementById("porcentaje-descuento-precio")
+const spanTotalDescuentoPrecio = document.getElementById("descuento-precio-total")
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -20,11 +23,15 @@ form.addEventListener("submit", (event) => {
   let porcentajeImpuesto = obtenerImpuestoEstado(codigo);
   let precioNeto = calcularPrecioNeto(cantidad, precio);
   let impuestoTotal = calcularImpuesto(precioNeto, porcentajeImpuesto);
-  let precioTotal = calcularPrecioTotal(precioNeto, impuestoTotal);
+  let listaDescuentoPrecio = calcularDescuentoSegunPrecio(precioNeto);
+  let descuentoPrecio = listaDescuentoPrecio[1];
+  let precioTotal = calcularPrecioTotal(precioNeto, impuestoTotal, descuentoPrecio);
   spanOperacion.textContent = `(${cantidad} * $${precio}):`;
   spanPrecioNeto.textContent = precioNeto + "$";
   spanCodigoEstado.textContent =  codigo;
   spanPorcentajeImpuesto.textContent = " ( " + porcentajeImpuesto + "%) :";
   spanTotalImpuesto.textContent = impuestoTotal.toFixed(4) + "$";
   spanPrecioTotal.textContent = precioTotal + "$";
+  spanPorcentajeDescuentoPrecio.textContent = `(${listaDescuentoPrecio[0]})`;
+  spanTotalDescuentoPrecio.textContent = descuentoPrecio;
 });
