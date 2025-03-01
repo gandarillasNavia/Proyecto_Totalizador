@@ -15,8 +15,11 @@ export function obtenerImpuestoEstado(codigo) {
 }
 
 export function calcularDescuentoSegunPrecio(precio) {
-    if (precio >= 7000) {
-        return ["7%", precio * 0.07];
+    if (precio >= 10000) {
+        return ["10%", precio * 0.1];
+    }
+    else if (precio >= 7000) {
+        return ["7%", precio * 0.07]
     }
     else if (precio >= 3000) {
         return ["5%", precio * 0.05]
