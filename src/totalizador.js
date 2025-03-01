@@ -14,6 +14,10 @@ export function obtenerImpuestoEstado(codigo) {
     return impuestos.get(codigo);
 }
 
-export function calcularPrecioImpuesto(precioNeto, impuestos) {
-    return precioNeto + (precioNeto * impuestos / 100);
+export function calcularImpuesto(precioNeto, impuestos){
+    return precioNeto * impuestos / 100;
+}
+
+export function calcularPrecioImpuesto(precioNeto, impuesto) {
+    return precioNeto + impuesto;
 }
