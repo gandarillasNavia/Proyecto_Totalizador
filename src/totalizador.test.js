@@ -23,3 +23,9 @@ describe("Obtener precio total con el impuesto de NV", () => {
     expect(calcularPrecioImpuesto(500,obtenerImpuestoEstado("NV"))).toBeCloseTo(540);
   });
 });
+
+describe("Obtener precio total con el impuesto de UT", () => {
+  it("Deberia retornar la suma del precio neto y el impuesto total de UT", () => {
+    expect(calcularPrecioImpuesto(500,obtenerImpuestoEstado("UT"))).toBeCloseTo(533.25);
+  });
+});
