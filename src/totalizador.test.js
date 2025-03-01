@@ -13,7 +13,13 @@ describe("Obtener precio total con el impuesto de CA", () => {
 });
 
 describe("Obtener precio total con el impuesto de AL", () => {
-  it("Deberia retornar la suma del precio neto y el impuesto total de CA", () => {
+  it("Deberia retornar la suma del precio neto y el impuesto total de AL", () => {
     expect(calcularPrecioImpuesto(500,obtenerImpuestoEstado("AL"))).toBeCloseTo(520);
+  });
+});
+
+describe("Obtener precio total con el impuesto de NV", () => {
+  it("Deberia retornar la suma del precio neto y el impuesto total de NV", () => {
+    expect(calcularPrecioImpuesto(500,obtenerImpuestoEstado("NV"))).toBeCloseTo(540);
   });
 });

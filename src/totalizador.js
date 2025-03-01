@@ -5,7 +5,8 @@ export function calcularPrecioNeto(cantidad, precio) {
 export function obtenerImpuestoEstado(codigo) {
     const impuestos = new Map([
         ["CA", 8.25],
-        ["AL", 4.00]
+        ["AL", 4.00],
+        ["NV", 8.00]
     ]);
 
     return impuestos.get(codigo);
