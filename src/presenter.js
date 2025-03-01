@@ -25,6 +25,6 @@ form.addEventListener("submit", (event) => {
   spanPrecioNeto.textContent = precioNeto + "$";
   spanCodigoEstado.textContent =  codigo;
   spanPorcentajeImpuesto.textContent = " ( " + porcentajeImpuesto + "%) :";
-  spanTotalImpuesto.textContent = impuestoTotal + "$";
+  spanTotalImpuesto.textContent = impuestoTotal.toFixed(4) + "$";
   spanPrecioTotal.textContent = precioTotal + "$";
 });
