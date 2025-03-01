@@ -37,14 +37,20 @@ describe("Obtener precio total con el impuesto de TX", () => {
   });
 });
 
-describe("Obtener descuento segun el precio neto", () => {
+describe("Obtener descuento si precio neto < 1000", () => {
   it("Deberia retornar una lista con 0% y 0", () => {
     expect(calcularDescuentoSegunPrecio(999)).toEqual(["0%", 0])
   })
 })
 
-describe("Obtener descuento segun el precio neto", () => {
+describe("Obtener descuento si precio neto >= 1000", () => {
   it("Deberia retornar una lista con 3% y el descuento correspondiente", () => {
-    expect(calcularDescuentoSegunPrecio(1000)).toEqual(["3%", 30])
+    expect(calcularDescuentoSegunPrecio(2999)).toEqual(["3%", 89.97])
+  })
+})
+
+describe("Obtener descuento si precio neto >= 3000", () => {
+  it("Deberia retornar una lista con 5% y el descuento correspondiente", () => {
+    expect(calcularDescuentoSegunPrecio(3000)).toEqual(["5%", 150])
   })
 })
