@@ -3,8 +3,10 @@ import { calcularPrecioNeto } from "./totalizador"
 const form = document.getElementById("parametros")
 const inputCant = document.getElementById("cantidad-in")
 const inputPrecio = document.getElementById("precio-in")
+const selectEstado = document.getElementById("estado-sel")
 const spanOperacion = document.getElementById("operacion-textual")
 const spanRespuesta = document.getElementById("resultado")
+const spanEstado = document.getElementById("estado")
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -12,4 +14,5 @@ form.addEventListener("submit", (event) => {
   let precio = inputPrecio.value;
   spanOperacion.textContent = "(" + cantidad + "* $" + precio + "):";
   spanRespuesta.textContent = calcularPrecioNeto(parseInt(cantidad), parseInt(precio)) + "$";
+  spanEstado.textContent = selectEstado.value;
 });
