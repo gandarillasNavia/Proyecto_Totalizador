@@ -18,6 +18,6 @@ export function calcularImpuesto(precioNeto, impuestos){
     return precioNeto * impuestos / 100;
 }
 
-export function calcularPrecioImpuesto(precioNeto, impuesto) {
+export function calcularPrecioTotal(precioNeto, impuesto) {
     return precioNeto + impuesto;
 }
