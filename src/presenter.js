@@ -1,9 +1,15 @@
+import { calcularPrecioNeto } from "./totalizador"
+
 const form = document.getElementById("parametros")
 const inputCant = document.getElementById("cantidad-in")
 const inputPrecio = document.getElementById("precio-in")
-const pRespuesta = document.getElementById("resultado")
+const spanOperacion = document.getElementById("operacion-textual")
+const spanRespuesta = document.getElementById("resultado")
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  pRespuesta.textContent = inputCant.value + " * " + inputPrecio.value;
+  let cantidad = inputCant.value;
+  let precio = inputPrecio.value;
+  spanOperacion.textContent = "(" + cantidad + "* $" + precio + "):";
+  spanRespuesta.textContent = calcularPrecioNeto(parseInt(cantidad), parseInt(precio)) + "$";
 });
