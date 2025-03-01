@@ -29,3 +29,11 @@ describe("Obtener precio total con el impuesto de UT", () => {
     expect(calcularPrecioImpuesto(500,obtenerImpuestoEstado("UT"))).toBeCloseTo(533.25);
   });
 });
+
+
+describe("Obtener precio total con el impuesto de TX", () => {
+  it("Deberia retornar la suma del precio neto y el impuesto total de TX", () => {
+    expect(calcularPrecioImpuesto(500,obtenerImpuestoEstado("TX"))).toBeCloseTo(531.25);
+  });
+});
+

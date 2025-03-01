@@ -8,6 +8,7 @@ export function obtenerImpuestoEstado(codigo) {
         ["AL", 4.00],
         ["NV", 8.00],
         ["UT", 6.65],
+        ["TX", 6.25]
     ]);
 
     return impuestos.get(codigo);
