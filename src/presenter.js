@@ -1,5 +1,5 @@
-import { calcularPrecioNeto } from "./totalizador";
-import { obtenerImpuestoEstado } from "./totalizador";
+import { calcularPrecioNeto } from "./totalizador.js";
+import { obtenerImpuestoEstado } from "./totalizador.js";
 
 const form = document.getElementById("parametros");
 const inputCant = document.getElementById("cantidad-in");
