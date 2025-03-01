@@ -66,3 +66,9 @@ describe("Obtener descuento si precio neto >= 10000", () => {
     expect(calcularDescuentoSegunPrecio(10000)).toEqual(["10%", 1000])
   })
 })
+
+describe("Obtener descuento si precio neto >= 30000", () => {
+  it("Deberia retornar una lista con 7% y el descuento correspondiente", () => {
+    expect(calcularDescuentoSegunPrecio(40000)).toEqual(["15%", 6000])
+  })
+})
