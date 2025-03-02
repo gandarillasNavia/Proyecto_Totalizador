@@ -41,7 +41,8 @@ export function obtenerImpuestoYDescuentoCategoria(categoria) {
         ["Alimentos", [0, 2]],
         ["Bebidas alcoholicas", [7, 0]],
         ["Material de escritorio", [0, 1.5]],
-        ["Muebles", [3,0]]
+        ["Muebles", [3,0]],
+        ["Electronicos", [4,1]]
     ]);
     return categorias.get(categoria);
 }

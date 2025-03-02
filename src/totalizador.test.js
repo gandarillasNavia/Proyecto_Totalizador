@@ -127,3 +127,9 @@ describe("Calcular impuesto y descuento para Muebles", () => {
     expect(calcularImpuestoYDescuentoCategoria(1000, "Muebles")).toEqual([30, 0]); 
   });
 });
+
+describe("Calcular impuesto y descuento para Electronicos", () => {
+  it("Debe calcular impuesto y descuento para Electronicos", () => {
+    expect(calcularImpuestoYDescuentoCategoria(1000, "Electronicos")).toEqual([40, 10]); 
+  });
+});
