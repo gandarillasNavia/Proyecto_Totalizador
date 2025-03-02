@@ -38,7 +38,8 @@ export function calcularDescuentoSegunPrecio(precio) {
 export function obtenerImpuestoYDescuentoCategoria(categoria) {
     const categorias = new Map([
         ["Varios", [0, 0]],
-        ["Alimentos", [0, 2]]
+        ["Alimentos", [0, 2]],
+        ["Bebidas alcoholicas", [7, 0]]
     ]);
     return categorias.get(categoria);
 }

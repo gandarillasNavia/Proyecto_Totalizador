@@ -109,3 +109,9 @@ describe("Calcular precio total con impuesto y descuento de categoría", () => {
     expect(calcularPrecioTotal(10000,555,300,0,0)).toEqual(10255)
   })
 }) 
+
+describe("Calcular impuesto y descuento para Bebidas alcoholicas", () => {
+  it("Debe calcular impuesto y descuento para bebidas alcoholicas", () => {
+    expect(calcularImpuestoYDescuentoCategoria(1000, "Bebidas alcoholicas")).toEqual([70, 0]); 
+  });
+});
