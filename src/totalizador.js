@@ -41,18 +41,18 @@ export function obtenerImpuestoYDescuentoCategoria(categoria) {
         ["Alimentos", [0, 2]],
         ["Bebidas alcoholicas", [7, 0]],
         ["Material de escritorio", [0, 1.5]],
-        ["Muebles", [3,0]],
-        ["Electronicos", [4,1]],
-        ["Vestimenta", [2,0]]
+        ["Muebles", [3, 0]],
+        ["Electronicos", [4, 1]],
+        ["Vestimenta", [2, 0]]
     ]);
     return categorias.get(categoria);
 }
 
 export function calcularImpuestoYDescuentoCategoria(precioNeto, categoria) {
-    const [impuesto, descuento] = obtenerImpuestoYDescuentoCategoria(categoria); 
+    const [impuesto, descuento] = obtenerImpuestoYDescuentoCategoria(categoria);
     const imp = precioNeto * (impuesto / 100);
     const desc = precioNeto * (descuento / 100);
-    return [imp, desc]; 
+    return [imp, desc];
 }
 
 export function calcularImpuesto(precioNeto, impuestos) {
@@ -61,14 +61,16 @@ export function calcularImpuesto(precioNeto, impuestos) {
 
 export function calcularCostoEnvio(pesoVolumetrico, cantidad) {
     let costoPorUnidad = 0;
-    if (pesoVolumetrico > 20 && pesoVolumetrico<= 40) {
+    if (pesoVolumetrico >= 41) {
+        costoPorUnidad = 6;
+    } else if (pesoVolumetrico >= 21) {
         costoPorUnidad = 5;
-    } else if (pesoVolumetrico > 10) {
+    } else if (pesoVolumetrico >= 11) {
         costoPorUnidad = 3.5;
     }
     return costoPorUnidad * cantidad;
 }
 
-export function calcularPrecioTotal(precioNeto, impuestoEstado, descuento, impuestoCat,descuentoCat) {
+export function calcularPrecioTotal(precioNeto, impuestoEstado, descuento, impuestoCat, descuentoCat) {
     return precioNeto + impuestoEstado - descuento + impuestoCat - descuentoCat;
 }
