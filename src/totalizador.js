@@ -35,10 +35,17 @@ export function calcularDescuentoSegunPrecio(precio) {
     }
 }
 
+export function obtenerImpuestoYDescuentoCategoria(categoria) {
+    const categorias = new Map([
+        ["Varios", [0, 0]]
+    ]);
+    return categorias.get(categoria);
+}
+
 export function calcularImpuesto(precioNeto, impuestos) {
     return parseFloat(precioNeto * impuestos / 100);
 }
 
-export function calcularPrecioTotal(precioNeto, impuesto,descuento) {
+export function calcularPrecioTotal(precioNeto, impuesto, descuento) {
     return precioNeto + impuesto - descuento;
 }

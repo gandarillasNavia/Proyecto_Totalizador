@@ -1,4 +1,5 @@
 import { calcularPrecioNeto, calcularPrecioTotal, calcularImpuesto, calcularDescuentoSegunPrecio } from './totalizador'
+import { obtenerImpuestoYDescuentoCategoria} from './totalizador'
 
 describe("Calcular precio neto", () => {
   it("Deberia multiplicar cantidad por precio", () => {
@@ -77,4 +78,10 @@ describe("Obtener precio total con impuesto y descuento", () => {
   it("Deberia retornar el precio total tomaando en cuenta impustos y descuento", () => {
     expect(calcularPrecioTotal(10000,500,455)).toEqual(10045)
   })
-})
+}) 
+
+describe("Obtener el porcentaje de impuesto y descuento de Varios", () => {
+  it("Deberia retornar lo valores de impuesto y descuento de la categoría Varios", () => {
+    expect(obtenerImpuestoYDescuentoCategoria("Varios")).toEqual([0, 0])
+  })
+}) 
