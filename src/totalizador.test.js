@@ -1,5 +1,5 @@
 import { calcularPrecioNeto, calcularPrecioTotal, calcularImpuesto, calcularDescuentoSegunPrecio } from './totalizador'
-import { obtenerImpuestoYDescuentoCategoria, calcularImpuestoYDescuentoCategoria} from './totalizador'
+import { obtenerImpuestoYDescuentoCategoria, calcularImpuestoYDescuentoCategoria, calcularCostoEnvio} from './totalizador'
 
 describe("Calcular precio neto", () => {
   it("Deberia multiplicar cantidad por precio", () => {
@@ -137,5 +137,11 @@ describe("Calcular impuesto y descuento para Electronicos", () => {
 describe("Calcular impuesto y descuento para Vestimenta", () => {
   it("Debe calcular impuesto y descuento para Vestimenta", () => {
     expect(calcularImpuestoYDescuentoCategoria(1000, "Vestimenta")).toEqual([20, 0]); 
+  });
+});
+
+describe("Calcular costo de envío según el peso volumétrico", () => {
+  it("Debe retornar 0 cuando el peso volumétrico es 10 o menor", () => {
+    expect(calcularCostoEnvio(10, 100)).toEqual(0); 
   });
 });

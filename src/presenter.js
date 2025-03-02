@@ -1,6 +1,6 @@
 import { calcularPrecioNeto, calcularImpuesto } from "./totalizador.js";
 import { obtenerImpuestoEstado, calcularPrecioTotal } from "./totalizador.js";
-import { calcularDescuentoSegunPrecio, obtenerImpuestoYDescuentoCategoria, calcularImpuestoYDescuentoCategoria } from "./totalizador.js";
+import { calcularDescuentoSegunPrecio, calcularCostoEnvio, calcularImpuestoYDescuentoCategoria } from "./totalizador.js";
 
 const form = document.getElementById("parametros");
 const inputCant = document.getElementById("cantidad-in");
@@ -12,6 +12,7 @@ const spanPrecioNeto = document.getElementById("precio-neto");
 const spanCodigoEstado = document.getElementById("estado");
 const selectCategoria = document.getElementById("categoria-sel")
 const spanCategoria = document.getElementById("categoria");
+const spanCostoEnvio = document.getElementById("costo-envio");
 const spanImpuestoCategoria = document.getElementById("impuesto-categoria");
 const spanPesoVolumetrico = document.getElementById("peso-vol");
 const spanDescuentoCategoria = document.getElementById("descuento-categoria");
@@ -33,6 +34,7 @@ form.addEventListener("submit", (event) => {
   let precioNeto = calcularPrecioNeto(cantidad, precio);
   let impuestoTotal = calcularImpuesto(precioNeto, porcentajeImpuesto);
   let listaDescuentoPrecio = calcularDescuentoSegunPrecio(precioNeto);
+  let costoEnvio = calcularCostoEnvio(peso, cantidad);
   let [impuestoCategoria, descuentoCategoria] = calcularImpuestoYDescuentoCategoria(precioNeto, categoria);
   let descuentoPrecio = listaDescuentoPrecio[1];
   let precioTotal = calcularPrecioTotal(precioNeto, impuestoTotal, descuentoPrecio, impuestoCategoria, descuentoCategoria);
@@ -41,6 +43,7 @@ form.addEventListener("submit", (event) => {
   spanCodigoEstado.textContent =  codigo;
   spanCategoria.textContent = categoria;
   spanPesoVolumetrico.textContent = peso;
+  spanCostoEnvio.textContent =  costoEnvio + "$";
   spanPorcentajeImpuesto.textContent = " ( " + porcentajeImpuesto + "%) :";
   spanTotalImpuesto.textContent = impuestoTotal.toFixed(2) + "$";
   spanPorcentajeDescuentoPrecio.textContent = `(${listaDescuentoPrecio[0]})`;
