@@ -42,6 +42,13 @@ export function obtenerImpuestoYDescuentoCategoria(categoria) {
     return categorias.get(categoria);
 }
 
+export function calcularImpuestoYDescuentoCategoria(precioNeto, categoria) {
+    const [impuesto, descuento] = obtenerImpuestoYDescuentoCategoria(categoria); 
+    const imp = precioNeto * (impuesto / 100);
+    const desc = precioNeto * (descuento / 100);
+    return [imp, desc]; 
+}
+
 export function calcularImpuesto(precioNeto, impuestos) {
     return parseFloat(precioNeto * impuestos / 100);
 }
