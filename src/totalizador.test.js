@@ -121,3 +121,9 @@ describe("Calcular impuesto y descuento para Material de escritorio", () => {
     expect(calcularImpuestoYDescuentoCategoria(1000, "Material de escritorio")).toEqual([0, 15]); 
   });
 });
+
+describe("Calcular impuesto y descuento para Muebles", () => {
+  it("Debe calcular impuesto y descuento para Muebles", () => {
+    expect(calcularImpuestoYDescuentoCategoria(1000, "Muebles")).toEqual([30, 0]); 
+  });
+});
