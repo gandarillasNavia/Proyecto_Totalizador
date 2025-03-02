@@ -61,8 +61,8 @@ export function calcularImpuesto(precioNeto, impuestos) {
 
 export function calcularCostoEnvio(pesoVolumetrico, cantidad) {
     let costoPorUnidad = 0;
-    if (pesoVolumetrico >= 0 && pesoVolumetrico <= 10) {
-        costoPorUnidad = 0;
+    if (pesoVolumetrico > 10 && pesoVolumetrico<= 20) {
+        costoPorUnidad = 3.5;
     }
     return costoPorUnidad * cantidad;
 }

@@ -145,3 +145,9 @@ describe("Calcular costo de envío según el peso volumétrico", () => {
     expect(calcularCostoEnvio(10, 100)).toEqual(0); 
   });
 });
+
+describe("Calcular costo de envío según el peso volumétrico", () => {
+  it("Debe retornar 0 cuando el peso volumétrico es mayor a 10", () => {
+    expect(calcularCostoEnvio(15, 2)).toBe(7);
+  });
+});
