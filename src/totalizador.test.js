@@ -86,7 +86,7 @@ describe("Obtener el porcentaje de impuesto y descuento de Varios", () => {
   })
 }) 
 
-describe("Calcular impuesto y descuento por categoría", () => {
+describe("Calcular impuesto y descuento para Varios", () => {
   it("Debe calcular el impuesto y descuento para la categoría Varios", () => {
     expect(calcularImpuestoYDescuentoCategoria(1000, "Varios")).toEqual([0, 0]); 
   });
@@ -97,6 +97,12 @@ describe("Obtener el porcentaje de impuesto y descuento de Alimentos", () => {
     expect(obtenerImpuestoYDescuentoCategoria("Alimentos")).toEqual([0, 2])
   })
 }) 
+
+describe("Calcular impuesto y descuento para Alimentos", () => {
+  it("Debe calcular el impuesto y descuento para la categoría Alimentos", () => {
+    expect(calcularImpuestoYDescuentoCategoria(1000, "Alimentos")).toEqual([0, 20]); 
+  });
+});
 
 describe("Calcular precio total con impuesto y descuento de categoría", () => {
   it("Deberia retornar el precio total tomando en cuenta impuestos y descuento", () => {
