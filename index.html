@@ -38,6 +38,14 @@
 			<option value="Vestimenta">Vestimenta</option>
 		</select>
 
+		<label for="tipo-cli-sel">Tipo de cliente:</label>
+		<select id="tipo-cli-sel">
+			<option value="Normal" selected>Normal</option>
+			<option value="Recurrente">Recurrente</option>
+			<option value="Antiguo Recurrente">Antiguo Recurrente</option>
+			<option value="Especial">Especial</option>
+		</select>
+
 		<input type="submit" value="Totalizar" id="totalizar-bt">
 	</form>
 
@@ -64,11 +72,14 @@
 		<span>Categoría seleccionada: </span>
 		<span id="categoria"></span>
 	</div>
-	<span> Impuesto total: </span>
-	<span id="impuesto-categoria"></span>
-	<span> Descuento total: </span>
-	<span id="descuento-categoria"></span>
 
+	<div>
+		<span> Impuesto total: </span>
+		<span id="impuesto-categoria"></span>
+		<span> Descuento total: </span>
+		<span id="descuento-categoria"></span>
+	</div>
+	
 	<div>
 		<span>Peso volumétrico: </span>
 		<span id="peso-vol"></span>
@@ -77,6 +88,12 @@
 	<div>
 		<span>Costo de envío: </span>
 		<span id="costo-envio"></span>
+	</div>
+
+	<div>
+		<span>Tipo cliente: </span>
+		<span id="tipo-cli"></span>
+		<span id="descuento-tipo-cli"></span>
 	</div>
 
 	<div>

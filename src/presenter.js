@@ -19,9 +19,17 @@ const spanDescuentoCategoria = document.getElementById("descuento-categoria");
 const spanPorcentajeImpuesto = document.getElementById("porcentaje-impuesto");
 const spanTotalImpuesto = document.getElementById("total-impuesto");
 const spanPrecioTotal = document.getElementById("precio-total");
-const spanPorcentajeDescuentoPrecio = document.getElementById("porcentaje-descuento-precio")
-const spanTotalDescuentoPrecio = document.getElementById("descuento-precio-total")
+const spanPorcentajeDescuentoPrecio = document.getElementById("porcentaje-descuento-precio");
+const spanTotalDescuentoPrecio = document.getElementById("descuento-precio-total");
+const selectTipoCliente = document.getElementById("tipo-cli-sel");
+const spanTipoCliente = document.getElementById("tipo-cli");
+const spanDescuentoTipoCliente = document.getElementById("descuento-tipo-cli");
 
+function tipoCliente() {
+  let tipo = selectTipoCliente.value;
+  spanTipoCliente.textContent = `${tipo}`;
+  spanDescuentoTipoCliente.textContent = 0;
+}
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -51,4 +59,5 @@ form.addEventListener("submit", (event) => {
   spanImpuestoCategoria.textContent = impuestoCategoria.toFixed(2) + "$";
   spanDescuentoCategoria.textContent = descuentoCategoria.toFixed(2) + "$";
   spanPrecioTotal.textContent = precioTotal.toFixed(2) + "$";
+  tipoCliente();
 });
