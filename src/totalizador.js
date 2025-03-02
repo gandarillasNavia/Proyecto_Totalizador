@@ -39,7 +39,8 @@ export function obtenerImpuestoYDescuentoCategoria(categoria) {
     const categorias = new Map([
         ["Varios", [0, 0]],
         ["Alimentos", [0, 2]],
-        ["Bebidas alcoholicas", [7, 0]]
+        ["Bebidas alcoholicas", [7, 0]],
+        ["Material de escritorio", [0, 1.5]]
     ]);
     return categorias.get(categoria);
 }
