@@ -53,6 +53,6 @@ export function calcularImpuesto(precioNeto, impuestos) {
     return parseFloat(precioNeto * impuestos / 100);
 }
 
-export function calcularPrecioTotal(precioNeto, impuesto, descuento) {
-    return precioNeto + impuesto - descuento;
+export function calcularPrecioTotal(precioNeto, impuestoEstado, descuento, impuestoCat,descuentoCat) {
+    return precioNeto + impuestoEstado - descuento + impuestoCat - descuentoCat;
 }

@@ -9,32 +9,32 @@ describe("Calcular precio neto", () => {
 
 describe("Obtener precio total con el impuesto de CA", () => {
   it("Deberia retornar la suma del precio neto y el impuesto total de CA", () => {
-    expect(calcularPrecioTotal(500, calcularImpuesto(500, 8.25), 0)).toBeCloseTo(541.25);
+    expect(calcularPrecioTotal(500, calcularImpuesto(500, 8.25), 0,0,0)).toBeCloseTo(541.25);
   });
 });
 
 describe("Obtener precio total con el impuesto de AL", () => {
   it("Deberia retornar la suma del precio neto y el impuesto total de AL", () => {
-    expect(calcularPrecioTotal(500, calcularImpuesto(500, 4.00), 0)).toBeCloseTo(520);
+    expect(calcularPrecioTotal(500, calcularImpuesto(500, 4.00), 0, 0, 0)).toBeCloseTo(520);
   });
 });
 
 describe("Obtener precio total con el impuesto de NV", () => {
   it("Deberia retornar la suma del precio neto y el impuesto total de NV", () => {
-    expect(calcularPrecioTotal(500, calcularImpuesto(500, 8.00), 0)).toBeCloseTo(540);
+    expect(calcularPrecioTotal(500, calcularImpuesto(500, 8.00), 0, 0, 0)).toBeCloseTo(540);
   });
 });
 
 describe("Obtener precio total con el impuesto de UT", () => {
   it("Deberia retornar la suma del precio neto y el impuesto total de UT", () => {
-    expect(calcularPrecioTotal(500, calcularImpuesto(500, 6.65), 0)).toBeCloseTo(533.25);
+    expect(calcularPrecioTotal(500, calcularImpuesto(500, 6.65), 0, 0, 0)).toBeCloseTo(533.25);
   });
 });
 
 
 describe("Obtener precio total con el impuesto de TX", () => {
   it("Deberia retornar la suma del precio neto y el impuesto total de TX", () => {
-    expect(calcularPrecioTotal(500, calcularImpuesto(500, 6.25), 0)).toBeCloseTo(531.25);
+    expect(calcularPrecioTotal(500, calcularImpuesto(500, 6.25), 0, 0, 0)).toBeCloseTo(531.25);
   });
 });
 
@@ -75,8 +75,8 @@ describe("Obtener descuento si precio neto >= 30000", () => {
 })
 
 describe("Obtener precio total con impuesto y descuento", () => {
-  it("Deberia retornar el precio total tomaando en cuenta impustos y descuento", () => {
-    expect(calcularPrecioTotal(10000,500,455)).toEqual(10045)
+  it("Deberia retornar el precio total tomando en cuenta impuestos y descuento", () => {
+    expect(calcularPrecioTotal(10000,500,455,0,0)).toEqual(10045)
   })
 }) 
 
@@ -91,3 +91,8 @@ describe("Calcular impuesto y descuento por categoría", () => {
     expect(calcularImpuestoYDescuentoCategoria(1000, "Varios")).toEqual([0, 0]); 
   });
 });
+describe("Calcular precio total con impuesto y descuento de categoría Varios", () => {
+  it("Deberia retornar el precio total tomando en cuenta impuestos y descuento", () => {
+    expect(calcularPrecioTotal(10000,555,300,0,0)).toEqual(10255)
+  })
+}) 
