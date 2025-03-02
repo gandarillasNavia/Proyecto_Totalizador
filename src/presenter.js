@@ -1,63 +1,84 @@
-import { calcularPrecioNeto, calcularImpuesto } from "./totalizador.js";
-import { obtenerImpuestoEstado, calcularPrecioTotal } from "./totalizador.js";
-import { calcularDescuentoSegunPrecio, calcularCostoEnvio, calcularImpuestoYDescuentoCategoria } from "./totalizador.js";
+import { 
+  calcularPrecioNeto, calcularImpuesto, obtenerImpuestoEstado, 
+  calcularPrecioTotal, calcularDescuentoSegunPrecio, 
+  calcularCostoEnvio, calcularImpuestoYDescuentoCategoria 
+} from "./totalizador.js";
 
 const form = document.getElementById("parametros");
 const inputCant = document.getElementById("cantidad-in");
 const inputPrecio = document.getElementById("precio-in");
-const inputPeso= document.getElementById("peso-in");
+const inputPeso = document.getElementById("peso-in");
 const selectEstado = document.getElementById("estado-sel");
-const spanOperacion = document.getElementById("operacion-textual");
-const spanPrecioNeto = document.getElementById("precio-neto");
-const spanCodigoEstado = document.getElementById("estado");
-const selectCategoria = document.getElementById("categoria-sel")
-const spanCategoria = document.getElementById("categoria");
-const spanCostoEnvio = document.getElementById("costo-envio");
-const spanImpuestoCategoria = document.getElementById("impuesto-categoria");
-const spanPesoVolumetrico = document.getElementById("peso-vol");
-const spanDescuentoCategoria = document.getElementById("descuento-categoria");
-const spanPorcentajeImpuesto = document.getElementById("porcentaje-impuesto");
-const spanTotalImpuesto = document.getElementById("total-impuesto");
-const spanPrecioTotal = document.getElementById("precio-total");
-const spanPorcentajeDescuentoPrecio = document.getElementById("porcentaje-descuento-precio");
-const spanTotalDescuentoPrecio = document.getElementById("descuento-precio-total");
+const selectCategoria = document.getElementById("categoria-sel");
 const selectTipoCliente = document.getElementById("tipo-cli-sel");
-const spanTipoCliente = document.getElementById("tipo-cli");
-const spanDescuentoTipoCliente = document.getElementById("descuento-tipo-cli");
 
-function tipoCliente() {
-  let tipo = selectTipoCliente.value;
-  spanTipoCliente.textContent = `${tipo}`;
-  spanDescuentoTipoCliente.textContent = 0;
-}
+const spans = {
+  operacion: document.getElementById("operacion-textual"),
+  precioNeto: document.getElementById("precio-neto"),
+  codigoEstado: document.getElementById("estado"),
+  categoria: document.getElementById("categoria"),
+  costoEnvio: document.getElementById("costo-envio"),
+  impuestoCategoria: document.getElementById("impuesto-categoria"),
+  pesoVolumetrico: document.getElementById("peso-vol"),
+  descuentoCategoria: document.getElementById("descuento-categoria"),
+  porcentajeImpuesto: document.getElementById("porcentaje-impuesto"),
+  totalImpuesto: document.getElementById("total-impuesto"),
+  precioTotal: document.getElementById("precio-total"),
+  porcentajeDescuentoPrecio: document.getElementById("porcentaje-descuento-precio"),
+  totalDescuentoPrecio: document.getElementById("descuento-precio-total"),
+  tipoCliente: document.getElementById("tipo-cli"),
+  descuentoTipoCliente: document.getElementById("descuento-tipo-cli")
+};
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+function calcularYMostrarPrecioNeto() {
   let cantidad = parseInt(inputCant.value);
   let precio = parseInt(inputPrecio.value);
+  let precioNeto = calcularPrecioNeto(cantidad, precio);
+  spans.operacion.textContent = `(${cantidad} * $${precio}):`;
+  spans.precioNeto.textContent = `${precioNeto}$`;
+  return precioNeto;
+}
+
+function actualizarTipoCliente() {
+  let tipo = selectTipoCliente.value;
+  spans.tipoCliente.textContent = tipo;
+  spans.descuentoTipoCliente.textContent = 0;
+}
+
+function calcularYMostrarResultados(event) {
+  event.preventDefault();
+  
+  let precioNeto = calcularYMostrarPrecioNeto();
   let peso = parseInt(inputPeso.value);
+  let cantidad = parseInt(inputCant.value);
   let codigo = selectEstado.value;
   let categoria = selectCategoria.value;
+  
   let porcentajeImpuesto = obtenerImpuestoEstado(codigo);
-  let precioNeto = calcularPrecioNeto(cantidad, precio);
   let impuestoTotal = calcularImpuesto(precioNeto, porcentajeImpuesto);
-  let listaDescuentoPrecio = calcularDescuentoSegunPrecio(precioNeto);
+  let [porcentajeDescPrecio, descuentoPrecio] = calcularDescuentoSegunPrecio(precioNeto);
   let costoEnvio = calcularCostoEnvio(peso, cantidad);
   let [impuestoCategoria, descuentoCategoria] = calcularImpuestoYDescuentoCategoria(precioNeto, categoria);
-  let descuentoPrecio = listaDescuentoPrecio[1];
   let precioTotal = calcularPrecioTotal(precioNeto, impuestoTotal, descuentoPrecio, impuestoCategoria, descuentoCategoria);
-  spanOperacion.textContent = `(${cantidad} * $${precio}):`;
-  spanPrecioNeto.textContent = precioNeto + "$";
-  spanCodigoEstado.textContent =  codigo;
-  spanCategoria.textContent = categoria;
-  spanPesoVolumetrico.textContent = peso;
-  spanCostoEnvio.textContent =  costoEnvio + "$";
-  spanPorcentajeImpuesto.textContent = " ( " + porcentajeImpuesto + "%) :";
-  spanTotalImpuesto.textContent = impuestoTotal.toFixed(2) + "$";
-  spanPorcentajeDescuentoPrecio.textContent = `(${listaDescuentoPrecio[0]})`;
-  spanTotalDescuentoPrecio.textContent = descuentoPrecio;
-  spanImpuestoCategoria.textContent = impuestoCategoria.toFixed(2) + "$";
-  spanDescuentoCategoria.textContent = descuentoCategoria.toFixed(2) + "$";
-  spanPrecioTotal.textContent = precioTotal.toFixed(2) + "$";
-  tipoCliente();
-});
+
+  actualizarUI({ codigo, categoria, peso, costoEnvio, porcentajeImpuesto, 
+                 impuestoTotal, porcentajeDescPrecio, descuentoPrecio, 
+                 impuestoCategoria, descuentoCategoria, precioTotal });
+  actualizarTipoCliente();
+}
+
+function actualizarUI(datos) {
+  spans.codigoEstado.textContent = datos.codigo;
+  spans.categoria.textContent = datos.categoria;
+  spans.pesoVolumetrico.textContent = datos.peso;
+  spans.costoEnvio.textContent = `${datos.costoEnvio}$`;
+  spans.porcentajeImpuesto.textContent = `(${datos.porcentajeImpuesto}%) :`;
+  spans.totalImpuesto.textContent = `${datos.impuestoTotal.toFixed(2)}$`;
+  spans.porcentajeDescuentoPrecio.textContent = `(${datos.porcentajeDescPrecio})`;
+  spans.totalDescuentoPrecio.textContent = datos.descuentoPrecio;
+  spans.impuestoCategoria.textContent = `${datos.impuestoCategoria.toFixed(2)}$`;
+  spans.descuentoCategoria.textContent = `${datos.descuentoCategoria.toFixed(2)}$`;
+  spans.precioTotal.textContent = `${datos.precioTotal.toFixed(2)}$`;
+}
+
+form.addEventListener("submit", calcularYMostrarResultados);
