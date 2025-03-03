@@ -65,6 +65,13 @@ export function calcularImpuestoYDescuentoCategoria(precioNeto, categoria) {
     return [imp, desc];
 }
 
+export function calcularDescuentoEspecial(tipoCliente, precioNeto, categoria) {
+    if (tipoCliente === "Recurrente" && precioNeto > 3000 && categoria === "Alimentos") {
+        return 100;
+    } 
+    return 0;
+}
+
 export function calcularImpuesto(precioNeto, impuestos) {
     return parseFloat(precioNeto * impuestos / 100);
 }
@@ -95,6 +102,6 @@ export function calcularCostoEnvio(pesoVolumetrico, cantidad) {
     return costoPorUnidad * cantidad;
 }
 
-export function calcularPrecioTotal(precioNeto, impuestoEstado, descuento, impuestoCat, descuentoCat,costoEnvio) {
-    return precioNeto + impuestoEstado - descuento + impuestoCat - descuentoCat + costoEnvio;
+export function calcularPrecioTotal(precioNeto, impuestoEstado, descuento, impuestoCat, descuentoCat,costoEnvio, descEsp) {
+    return precioNeto + impuestoEstado - descuento + impuestoCat - descuentoCat + costoEnvio - descEsp;
 }
