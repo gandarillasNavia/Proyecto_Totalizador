@@ -92,6 +92,6 @@ export function calcularCostoEnvio(pesoVolumetrico, cantidad) {
     return costoPorUnidad * cantidad;
 }
 
-export function calcularPrecioTotal(precioNeto, impuestoEstado, descuento, impuestoCat, descuentoCat) {
-    return precioNeto + impuestoEstado - descuento + impuestoCat - descuentoCat;
+export function calcularPrecioTotal(precioNeto, impuestoEstado, descuento, impuestoCat, descuentoCat,costoEnvio) {
+    return precioNeto + impuestoEstado - descuento + impuestoCat - descuentoCat + costoEnvio;
 }
