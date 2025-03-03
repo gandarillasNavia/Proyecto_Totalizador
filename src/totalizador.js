@@ -50,7 +50,8 @@ export function obtenerImpuestoYDescuentoCategoria(categoria) {
 
 export function obtenerDescuentoEnvioCliente(cliente) {
     const clientes = new Map([
-        ["Normal", 0]
+        ["Normal", 0],
+        ["Recurrente", 5]
     ]);
     return clientes.get(cliente);
 }
