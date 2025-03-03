@@ -68,7 +68,9 @@ export function calcularImpuestoYDescuentoCategoria(precioNeto, categoria) {
 export function calcularDescuentoEspecial(tipoCliente, precioNeto, categoria) {
     if (tipoCliente === "Recurrente" && precioNeto > 3000 && categoria === "Alimentos") {
         return 100;
-    } 
+    } else if (tipoCliente === "Especial" && precioNeto > 7000 && categoria === "Electronicos") {
+        return 200;
+    }
     return 0;
 }
 

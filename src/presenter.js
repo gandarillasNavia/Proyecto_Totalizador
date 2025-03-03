@@ -3,7 +3,7 @@ import {
   calcularPrecioTotal, calcularDescuentoSegunPrecio, 
   calcularCostoEnvio, calcularImpuestoYDescuentoCategoria,
   calcularDescuentoEnvio, obtenerDescuentoEnvioCliente,
-  calcularEnvioTotal
+  calcularDescuentoEspecial, calcularEnvioTotal
 } from "./totalizador.js";
 
 const form = document.getElementById("parametros");
@@ -32,6 +32,7 @@ const spans = {
   descuentoTipoCliente: document.getElementById("descuento-tipo-cli"),
   descuentoEnvio: document.getElementById("descuento-envio"),
   totalEnvio: document.getElementById("total-envio"),
+  descuentoEspecial: document.getElementById("descuento-especial")
 };
 
 function calcularYMostrarPrecioNeto() {
@@ -65,9 +66,10 @@ function calcularYMostrarResultados(event) {
   let descuentoEnvio = calcularDescuentoEnvio(costoEnvio,porcentajeDescEnvio);
   let totalEnvio =  calcularEnvioTotal(costoEnvio,descuentoEnvio);
   let [impuestoCategoria, descuentoCategoria] = calcularImpuestoYDescuentoCategoria(precioNeto, categoria);
-  let precioTotal = calcularPrecioTotal(precioNeto, impuestoTotal, descuentoPrecio, impuestoCategoria, descuentoCategoria,totalEnvio);
+  let descuentoEspecial = calcularDescuentoEspecial(tipo, precioNeto,categoria);
+  let precioTotal = calcularPrecioTotal(precioNeto, impuestoTotal, descuentoPrecio, impuestoCategoria, descuentoCategoria,totalEnvio,descuentoEspecial);
 
-  actualizarUI({ codigo, categoria, peso, costoEnvio, porcentajeImpuesto, 
+  actualizarUI({ codigo, categoria, peso, costoEnvio, porcentajeImpuesto, descuentoEspecial,
                  impuestoTotal, porcentajeDescPrecio, descuentoPrecio, totalEnvio,
                  descuentoEnvio, impuestoCategoria, descuentoCategoria, precioTotal});
   actualizarTipoCliente();
@@ -86,6 +88,7 @@ function actualizarUI(datos) {
   spans.totalDescuentoPrecio.textContent = datos.descuentoPrecio + '$';
   spans.impuestoCategoria.textContent = `${datos.impuestoCategoria.toFixed(2)}$`;
   spans.descuentoCategoria.textContent = `${datos.descuentoCategoria.toFixed(2)}$`;
+  spans.descuentoEspecial.textContent = datos.descuentoEspecial + '$';
   spans.precioTotal.textContent = `${datos.precioTotal.toFixed(2)}$`;
 }
 

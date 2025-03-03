@@ -225,6 +225,12 @@ describe("Calcular descuento especial", () => {
   });
 });
 
+describe("Calcular descuento especial", () => {
+  it("Debe devolver el descuento especial para caso 1", () => {
+    expect(calcularDescuentoEspecial("Especial", 8000, "Electrónicos")).toBe(200);
+  });
+});
+
 describe("Calcular precio total con envio total", () => {
   it("Debe la diferencia del precio total tomando el precio total del envio", () => {
     expect(calcularPrecioTotal(100,0,0,0,0,45,calcularDescuentoEspecial("Recurrente", 3500, "Alimentos"))).toBe(45);
