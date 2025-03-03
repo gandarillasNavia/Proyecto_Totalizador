@@ -207,6 +207,12 @@ describe("Calcular descuento de envío según tipo de clinte", () => {
   });
 });
 
+describe("Calcular descuento de envío según tipo de clinte", () => {
+  it("Debe retornar el descuento total del envio para Especial", () => {
+    expect(calcularDescuentoEnvio(100,obtenerDescuentoEnvioCliente("Especial"))).toBe(1.5);
+  });
+});
+
 describe("Calcular envio total con descuento", () => {
   it("Debe la diferencia del precio de envio y el descuento", () => {
     expect(calcularEnvioTotal(100,40)).toBe(60);

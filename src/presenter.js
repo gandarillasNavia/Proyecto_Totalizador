@@ -46,7 +46,7 @@ function calcularYMostrarPrecioNeto() {
 function actualizarTipoCliente() {
   let tipo = selectTipoCliente.value;
   spans.tipoCliente.textContent = tipo;
-  spans.descuentoTipoCliente.textContent = obtenerDescuentoEnvioCliente(tipo);
+  spans.descuentoTipoCliente.textContent = obtenerDescuentoEnvioCliente(tipo) + '%';
 }
 
 function calcularYMostrarResultados(event) {
@@ -83,7 +83,7 @@ function actualizarUI(datos) {
   spans.porcentajeImpuesto.textContent = `(${datos.porcentajeImpuesto}%) :`;
   spans.totalImpuesto.textContent = `${datos.impuestoTotal.toFixed(2)}$`;
   spans.porcentajeDescuentoPrecio.textContent = `(${datos.porcentajeDescPrecio})`;
-  spans.totalDescuentoPrecio.textContent = datos.descuentoPrecio;
+  spans.totalDescuentoPrecio.textContent = datos.descuentoPrecio + '$';
   spans.impuestoCategoria.textContent = `${datos.impuestoCategoria.toFixed(2)}$`;
   spans.descuentoCategoria.textContent = `${datos.descuentoCategoria.toFixed(2)}$`;
   spans.precioTotal.textContent = `${datos.precioTotal.toFixed(2)}$`;

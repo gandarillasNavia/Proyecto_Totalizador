@@ -52,7 +52,8 @@ export function obtenerDescuentoEnvioCliente(cliente) {
     const clientes = new Map([
         ["Normal", 0],
         ["Recurrente", 0.5],
-        ["Antiguo Recurrente", 1]
+        ["Antiguo Recurrente", 1],
+        ["Especial", 1.5]
     ]);
     return clientes.get(cliente);
 }
