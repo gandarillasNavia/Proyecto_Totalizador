@@ -51,7 +51,8 @@ export function obtenerImpuestoYDescuentoCategoria(categoria) {
 export function obtenerDescuentoEnvioCliente(cliente) {
     const clientes = new Map([
         ["Normal", 0],
-        ["Recurrente", 5]
+        ["Recurrente", 0.5],
+        ["Antiguo recurrente", 1]
     ]);
     return clientes.get(cliente);
 }

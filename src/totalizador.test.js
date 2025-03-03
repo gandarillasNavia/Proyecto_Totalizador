@@ -197,7 +197,13 @@ describe("Calcular descuento de envío según tipo de clinte", () => {
 
 describe("Calcular descuento de envío según tipo de clinte", () => {
   it("Debe retornar el descuento total del envio para Recurrente", () => {
-    expect(calcularDescuentoEnvio(100,obtenerDescuentoEnvioCliente("Recurrente"))).toBe(5);
+    expect(calcularDescuentoEnvio(100,obtenerDescuentoEnvioCliente("Recurrente"))).toBe(0.5);
+  });
+});
+
+describe("Calcular descuento de envío según tipo de clinte", () => {
+  it("Debe retornar el descuento total del envio para Antiguo recurrente", () => {
+    expect(calcularDescuentoEnvio(100,obtenerDescuentoEnvioCliente("Antiguo recurrente"))).toBe(1);
   });
 });
 
