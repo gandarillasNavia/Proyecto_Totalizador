@@ -46,18 +46,18 @@ function calcularYMostrarPrecioNeto() {
 function actualizarTipoCliente() {
   let tipo = selectTipoCliente.value;
   spans.tipoCliente.textContent = tipo;
-  spans.descuentoTipoCliente.textContent = 0;
+  spans.descuentoTipoCliente.textContent = obtenerDescuentoEnvioCliente(tipo);
 }
 
 function calcularYMostrarResultados(event) {
   event.preventDefault();
-  
+  let tipo = selectTipoCliente.value;
   let precioNeto = calcularYMostrarPrecioNeto();
   let peso = parseInt(inputPeso.value);
   let cantidad = parseInt(inputCant.value);
   let codigo = selectEstado.value;
   let categoria = selectCategoria.value;
-  let porcentajeDescEnvio = obtenerDescuentoEnvioCliente(selectTipoCliente.value);
+  let porcentajeDescEnvio = obtenerDescuentoEnvioCliente(tipo);
   let porcentajeImpuesto = obtenerImpuestoEstado(codigo);
   let impuestoTotal = calcularImpuesto(precioNeto, porcentajeImpuesto);
   let [porcentajeDescPrecio, descuentoPrecio] = calcularDescuentoSegunPrecio(precioNeto);
