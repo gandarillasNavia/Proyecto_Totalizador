@@ -48,6 +48,13 @@ export function obtenerImpuestoYDescuentoCategoria(categoria) {
     return categorias.get(categoria);
 }
 
+export function obtenerDescuentoEnvioCliente(cliente) {
+    const clientes = new Map([
+        ["Normal", 0]
+    ]);
+    return clientes.get(cliente);
+}
+
 export function calcularImpuestoYDescuentoCategoria(precioNeto, categoria) {
     const [impuesto, descuento] = obtenerImpuestoYDescuentoCategoria(categoria);
     const imp = precioNeto * (impuesto / 100);

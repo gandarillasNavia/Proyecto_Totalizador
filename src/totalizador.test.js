@@ -1,5 +1,5 @@
 import { calcularPrecioNeto, calcularPrecioTotal, calcularImpuesto, calcularDescuentoSegunPrecio } from './totalizador'
-import { obtenerImpuestoYDescuentoCategoria, calcularImpuestoYDescuentoCategoria, calcularCostoEnvio} from './totalizador'
+import { obtenerImpuestoYDescuentoCategoria, calcularImpuestoYDescuentoCategoria, calcularCostoEnvio, obtenerDescuentoEnvioCliente} from './totalizador'
 
 describe("Calcular precio neto", () => {
   it("Deberia multiplicar cantidad por precio", () => {
@@ -179,5 +179,11 @@ describe("Calcular costo de envío según el peso volumétrico", () => {
 describe("Calcular costo de envío según el peso volumétrico", () => {
   it("Debe retornar 9 * unidad cuando el peso volumétrico es mas de 200", () => {
     expect(calcularCostoEnvio(300, 5)).toBe(45);
+  });
+});
+
+describe("Obtener descuento de envío según tipo de clinte", () => {
+  it("Debe retornar el descuento total del envio segun el cliente", () => {
+    expect(obtenerDescuentoEnvioCliente("Normal")).toBe(0);
   });
 });
