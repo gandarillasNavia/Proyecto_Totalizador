@@ -70,6 +70,10 @@ export function calcularDescuentoEnvio(precioEnvio, descuento) {
     return parseFloat(precioEnvio * descuento / 100);
 }
 
+export function calcularEnvioTotal(precioEnvio, descuentoEnvio) {
+    return parseFloat(precioEnvio - descuentoEnvio);
+}
+
 export function calcularCostoEnvio(pesoVolumetrico, cantidad) {
     let costoPorUnidad = 0;
     if (pesoVolumetrico >= 201) {

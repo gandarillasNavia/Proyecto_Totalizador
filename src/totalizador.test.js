@@ -1,6 +1,6 @@
 import { calcularPrecioNeto, calcularPrecioTotal, calcularImpuesto, calcularDescuentoSegunPrecio } from './totalizador'
 import { obtenerImpuestoYDescuentoCategoria, calcularImpuestoYDescuentoCategoria, calcularCostoEnvio, obtenerDescuentoEnvioCliente} from './totalizador'
-import { calcularDescuentoEnvio } from './totalizador'
+import { calcularDescuentoEnvio, calcularEnvioTotal } from './totalizador'
 
 describe("Calcular precio neto", () => {
   it("Deberia multiplicar cantidad por precio", () => {
@@ -192,5 +192,11 @@ describe("Obtener porcentaje dedescuento de envío según tipo de clinte", () =>
 describe("Calcular descuento de envío según tipo de clinte", () => {
   it("Debe retornar el descuento total del envio segun el cliente", () => {
     expect(calcularDescuentoEnvio(100,0)).toBe(0);
+  });
+});
+
+describe("Calcular envio total con descuento", () => {
+  it("Debe la diferencia del precio de envio y el descuento", () => {
+    expect(calcularEnvioTotal(100,40)).toBe(60);
   });
 });
