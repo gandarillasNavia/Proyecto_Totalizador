@@ -66,6 +66,10 @@ export function calcularImpuesto(precioNeto, impuestos) {
     return parseFloat(precioNeto * impuestos / 100);
 }
 
+export function calcularDescuentoEnvio(precioEnvio, descuento) {
+    return parseFloat(precioEnvio * descuento / 100);
+}
+
 export function calcularCostoEnvio(pesoVolumetrico, cantidad) {
     let costoPorUnidad = 0;
     if (pesoVolumetrico >= 201) {
