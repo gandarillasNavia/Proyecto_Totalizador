@@ -1,7 +1,9 @@
 import { 
   calcularPrecioNeto, calcularImpuesto, obtenerImpuestoEstado, 
   calcularPrecioTotal, calcularDescuentoSegunPrecio, 
-  calcularCostoEnvio, calcularImpuestoYDescuentoCategoria 
+  calcularCostoEnvio, calcularImpuestoYDescuentoCategoria,
+  calcularDescuentoEnvio, obtenerDescuentoEnvioCliente,
+  calcularEnvioTotal
 } from "./totalizador.js";
 
 const form = document.getElementById("parametros");
@@ -27,7 +29,9 @@ const spans = {
   porcentajeDescuentoPrecio: document.getElementById("porcentaje-descuento-precio"),
   totalDescuentoPrecio: document.getElementById("descuento-precio-total"),
   tipoCliente: document.getElementById("tipo-cli"),
-  descuentoTipoCliente: document.getElementById("descuento-tipo-cli")
+  descuentoTipoCliente: document.getElementById("descuento-tipo-cli"),
+  descuentoEnvio: document.getElementById("descuento-envio"),
+  totalEnvio: document.getElementById("total-envio"),
 };
 
 function calcularYMostrarPrecioNeto() {
@@ -53,17 +57,19 @@ function calcularYMostrarResultados(event) {
   let cantidad = parseInt(inputCant.value);
   let codigo = selectEstado.value;
   let categoria = selectCategoria.value;
-  
+  let porcentajeDescEnvio = obtenerDescuentoEnvioCliente(selectTipoCliente.value);
   let porcentajeImpuesto = obtenerImpuestoEstado(codigo);
   let impuestoTotal = calcularImpuesto(precioNeto, porcentajeImpuesto);
   let [porcentajeDescPrecio, descuentoPrecio] = calcularDescuentoSegunPrecio(precioNeto);
   let costoEnvio = calcularCostoEnvio(peso, cantidad);
+  let descuentoEnvio = calcularDescuentoEnvio(costoEnvio,porcentajeDescEnvio);
+  let totalEnvio =  calcularEnvioTotal(costoEnvio,descuentoEnvio);
   let [impuestoCategoria, descuentoCategoria] = calcularImpuestoYDescuentoCategoria(precioNeto, categoria);
-  let precioTotal = calcularPrecioTotal(precioNeto, impuestoTotal, descuentoPrecio, impuestoCategoria, descuentoCategoria);
+  let precioTotal = calcularPrecioTotal(precioNeto, impuestoTotal, descuentoPrecio, impuestoCategoria, descuentoCategoria,totalEnvio);
 
   actualizarUI({ codigo, categoria, peso, costoEnvio, porcentajeImpuesto, 
-                 impuestoTotal, porcentajeDescPrecio, descuentoPrecio, 
-                 impuestoCategoria, descuentoCategoria, precioTotal });
+                 impuestoTotal, porcentajeDescPrecio, descuentoPrecio, totalEnvio,
+                 descuentoEnvio, impuestoCategoria, descuentoCategoria, precioTotal});
   actualizarTipoCliente();
 }
 
@@ -72,6 +78,8 @@ function actualizarUI(datos) {
   spans.categoria.textContent = datos.categoria;
   spans.pesoVolumetrico.textContent = datos.peso;
   spans.costoEnvio.textContent = `${datos.costoEnvio}$`;
+  spans.descuentoEnvio.textContent = `${datos.descuentoEnvio.toFixed(2)}$`;
+  spans.totalEnvio.textContent = `${datos.totalEnvio.toFixed(2)}$`;
   spans.porcentajeImpuesto.textContent = `(${datos.porcentajeImpuesto}%) :`;
   spans.totalImpuesto.textContent = `${datos.impuestoTotal.toFixed(2)}$`;
   spans.porcentajeDescuentoPrecio.textContent = `(${datos.porcentajeDescPrecio})`;
