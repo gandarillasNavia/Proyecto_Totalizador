@@ -227,7 +227,7 @@ describe("Calcular descuento especial", () => {
 
 describe("Calcular descuento especial", () => {
   it("Debe devolver el descuento especial para caso 1", () => {
-    expect(calcularDescuentoEspecial("Especial", 8000, "Electrónicos")).toBe(200);
+    expect(calcularDescuentoEspecial("Especial", 8000, "Electronicos")).toBe(200);
   });
 });
 
